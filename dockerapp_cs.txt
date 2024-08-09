@@ -1,4 +1,4 @@
-sudo docker run -d -p 8000:8000 -e CONNECTION_STRING="Driver={ODBC Driver 17 for SQL Server};Server=tcp:todo-dbserv01.database.windows.net,1433;Database=todoapp-dbs;Uid=admin01;Pwd=admin@123456;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;" add_task
+sudo docker run -d -p 8000:8000 -e CONNECTION_STRING=".............." add_task
 
 {docker run -d -p 80:80 -e name="value" <image_name>}
 
