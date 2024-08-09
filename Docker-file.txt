@@ -1,0 +1,64 @@
+Docker file :
+
+- COPY/ADD
+- ENV
+- EXPOSE
+
+* Multistage docker file
+
+* Production level app deploy on containers
+
+Infra build --> Landing Zone (V Networks, subnets, VMs, key vaults, loadbalancer, database) 
+
+
+
+
+
+* COPY/ADD working - 
+
+- Both have same work of copy the data but "ADD command will copy from local or from remote"
+
+* ENV 
+
+- We pass the sensitive info like Connection string of Database as variables in containers.
+
+* EXPOSE
+
+- Expose the app as per the developer's app redme file execpt default ports like nginx - 80
+
+
+
+
+Docker  Multistage file - "we avoid dependencies required to build an application & 
+                           We don't use CMD command in build stage"
+
+#BUILD STAGE
+
+FROM ubuntu:20.04 as shobhit
+WORKDIR /KGF3
+RUN apt update && apt install nginx -y
+RUN echo "KGF3 movie will release in 2025" > /var/www/html/index.nginx-debian.html
+
+#FINAL STAGE
+
+FROM nginx:stable-alpine3.19-slim 
+COPY -from=shobhit  /var/www/html/index.nginx-debian.html /usr/share/nginx/http-default_server.conf
+CMD nginx -g 'daemon off;'
+
+
+
+
+# Build Stage
+FROM alpine as shobhit
+WORKDIR /kgf4
+RUN apk add --no-cache nginx
+RUN echo "KGF3 movie will release in 2025" > /kgf4/index.html
+
+# Final Stage
+FROM nginx:alpine
+COPY --from=shobhit /kgf4/index.html /usr/share/nginx/html/index.html
+CMD ["nginx", "-g", "daemon off;"]
+
+
+
+

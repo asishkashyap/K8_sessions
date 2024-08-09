@@ -1,0 +1,32 @@
+Docker file is script to create a customised image or application
+
+
+Imperative way - Old approach
+
+Declerative way - New approach {Automation}
+
+Docker File= Image or app build 
+
+* Base os ya image :  FROM ya docker pull - Alpine OS - apk 
+
+"How you will make docker image lighter - Alpine OS"
+
+FROM ubuntu:20.04
+WORKDIR /buildapp
+RUN apt update && apt install nginx -y
+RUN echo "Hello DevOps Pioneers" > /var/www/html/index.nginx-debian.html
+CMD nginx -g 'daemon off;'
+
+As per the guidance of Developer *(Repo's Readme File)
+
+
+
+
+
+
+To build image :
+
+docker build -t kalki:0.1 . 
+
+
+
