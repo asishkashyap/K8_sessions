@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: todors
+  labels:
+    app: todo
+    env: dev
+spec:
+  replicas: 5
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - todo
+      - key: env
+        operator: In
+        values:
+          - dev
+  template:
+    metadata:
+      labels:
+        app: todo
+        env: dev
+    spec:
+      containers:
+        - name: todocont
+          image: devopsinsiders/micro-todo-ui
+          ports:
+            - containerPort: 80
