@@ -1,14 +1,17 @@
 apiVersion: v1 
 kind: Pod 
 metadata:
- name: grafana
+ name: gettask
  namespace: default 
  labels:
-  car: ferrari
+  app: get
 
 spec:
   containers:
-  - name: grafanacontainer
-    image: wordpress:php8.2-apache
+  - name: getcontainer
+    image: ashishkashyap92/gettask
     ports:
-    - containerPort: 80
+    - containerPort: 8000
+    envFrom:
+    - secretRef:
+        name: dbdetails
