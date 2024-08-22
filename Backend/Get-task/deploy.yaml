@@ -1,0 +1,25 @@
+apiVersion: apps/v1               
+kind: Deployment
+metadata:
+  name: get-deploy
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In 
+        values:
+        - gettask
+  template:
+    metadata:
+      labels:
+        app: gettask
+    spec:
+      containers:
+      - name: gettaskct
+        image: ashishkashyap92/gettask
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: dbdetails

@@ -1,0 +1,25 @@
+apiVersion: apps/v1               
+kind: Deployment
+metadata:
+  name: del-deploy
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In 
+        values:
+        - deletetask
+  template:
+    metadata:
+      labels:
+        app: deletetask
+    spec:
+      containers:
+      - name: deletetaskct
+        image: ashishkashyap92/deletetask
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: dbdetails
