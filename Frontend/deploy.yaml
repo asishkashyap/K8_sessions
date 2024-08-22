@@ -1,0 +1,25 @@
+apiVersion: apps/v1               
+kind: Deployment
+metadata:
+  name: todo-deploy
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In 
+        values:
+        - todo
+  template:
+    metadata:
+      labels:
+        app: todo
+    spec:
+      containers:
+      - name: addtaskct
+        image: ashishkashyap92/addtask
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: dbdetails
