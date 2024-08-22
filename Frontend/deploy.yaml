@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: addtaskct
-        image: ashishkashyap92/addtask
+        image: ashishkashyap92/frontend
         ports:
         - containerPort: 8000
         envFrom:
