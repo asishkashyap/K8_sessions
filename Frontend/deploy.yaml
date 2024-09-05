@@ -16,10 +16,7 @@ spec:
         app: todo
     spec:
       containers:
-      - name: addtaskct
-        image: ashishkashyap92/frontend
+      - name: todoct
+        image: ashishkashyap92/frontend23
         ports:
-        - containerPort: 8000
-        envFrom:
-        - secretRef:
-            name: dbdetails
+        - containerPort: 80

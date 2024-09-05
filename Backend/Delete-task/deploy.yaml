@@ -20,6 +20,9 @@ spec:
         image: ashishkashyap92/deletetask
         ports:
         - containerPort: 8000
-        envFrom:
-        - secretRef:
-            name: dbdetails
+        env:
+        - name: CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+                key: CONNECTION_STRING
+                name: todosecret
